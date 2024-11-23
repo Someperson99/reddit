@@ -1,0 +1,18 @@
+header {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    background-color: #2196F3;
+    padding: 10px;
+    
+}
+
+.headerItem #websiteLogo{  
+    display: inline-flex;
+    column-gap: 5px;
+    text-align: center;
+}
+
+.headerItem #searchBar {
+    width: 98%;
+}
