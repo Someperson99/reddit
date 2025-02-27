@@ -1,11 +1,32 @@
+import { useState } from "react";
 import "../css/SearchHeader.css"
 
 function SearchHeader() {
+
+    const [searchValue, setSearchValue] = useState("");
+    const [result, setResult] = useState("");
+
+    //returns value stored in HTML element with id searchBar after
+    //user selects enter    
+    function handleSubmit(e){
+        e.preventDefault();
+        setResult(searchValue);
+        return result;
+    }
+
+    //handles updating what is displayed in the search bar as the
+    //user types. At each event (keyboard press) the search bar
+    //will update
+    function handleChange(e){
+        setSearchValue(e.target.value);
+        setResult("");
+    }
+
     return (
         <header>
             <div className="headerItem">
                 <div id="websiteLogo">
-                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="logo-icon" height="50px" width="50px"
+                    <a href="/"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="logo-icon" height="50px" width="50px"
                         xmlns="http://www.w3.org/2000/svg">
                             <path d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6
                             24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8
@@ -15,12 +36,14 @@ function SearchHeader() {
                             19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2
                             0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1
                             24.9-24.6 0-13.8-11-24.9-24.9-24.9z"></path>  
-                    </svg>
-                    <p>RedditMinimal</p>
+                        </svg>
+                        <p>RedditMinimal</p>
+                    </a>
                 </div>
             </div>
             <div className="headerItem">
-                <input type="text" placeholder="Search.." id="searchBar"></input>
+                <form onSubmit={handleSubmit}><input type="text" placeholder="Search..." value={searchValue}
+                    onInput={handleChange} id="searchBar"/></form>
             </div>
             <div className="headerItem" id="emptyPlaceHolder" />
         </header>
